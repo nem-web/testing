@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Index</title>
+    <script>
+        // Load the content of index.php using AJAX
+        window.onload = function() {
+            fetch("index.php")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById("output").innerHTML = data;
+                })
+                .catch(error => {
+                    console.error("Error loading index.php:", error);
+                    document.getElementById("output").innerText = "Failed to load index.php.";
+                });
+        };
+    </script>
+</head>
+<body>
+    <h1>Index.php Content</h1>
+    <div id="output">
+        <!-- The content of index.php will be displayed here -->
+        Loading...
+    </div>
+</body>
+</html>
